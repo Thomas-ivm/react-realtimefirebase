@@ -1,6 +1,6 @@
 import logo from '../logo.svg';
 import '../App.css';
-import { Auth } from '../components/auth';
+import { Auth } from '../components/signup';
 
 function Home() {
   return (
@@ -20,7 +20,6 @@ function Home() {
         </a>
         <div>
 
-        <Auth />
 
         </div>
       </header>

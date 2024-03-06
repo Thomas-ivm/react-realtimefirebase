@@ -5,10 +5,11 @@ import { useState } from "react";
 export const Auth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [name, setName] = useState("")
 
     console.log(auth?.currentUser?.email);
 
-    const singin = async () => {
+    const signup = async () => {
         try {
             await createUserWithEmailAndPassword(auth, email, password)
         } catch (err) {
@@ -16,7 +17,7 @@ export const Auth = () => {
         }
     };
 
-    const signinWithGoogle = async () => {
+    const signupWithGoogle = async () => {
         try {
             await signInWithPopup( auth, googleprovider)
         } catch (err) {
@@ -34,11 +35,11 @@ export const Auth = () => {
 
     return (
         <div>
-            <input placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
+            <input placeholder="Email..." type="email" onChange={(e) => setEmail(e.target.value)} />
             <input placeholder="Password..." type="password" onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={singin}> Sign in</button>
-            <button onClick={signinWithGoogle}>Sign in with Goolge</button>
-            <button onClick={logout}> Logout </button>
+            <input placeholder="Name..." type="text" onChange={(e) => setName(e.target.value)} />
+            <button onClick={signup}> Sign up</button>
+            <button onClick={signupWithGoogle}>Sign up with Goolge</button>
         </div>
     )
 }
