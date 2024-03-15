@@ -1,53 +1,87 @@
 import React, { useState } from "react";
-import { auth, googleprovider } from "../config/firebase";
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import '../App.css';
+import { auth, googleProvider } from "../config/firebase"; // Importing Firebase authentication configuration
+import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"; // Importing Firebase authentication functions
 
+// Functional component for handling user login
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // State variables for storing user input
+  const [email, setEmail] = useState(""); // State variable for email
+  const [password, setPassword] = useState(""); // State variable for password
 
+  // Function to update state with entered email
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+  // Function to update state with entered password
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  // Function to handle user sign in with email and password
   const handleSignIn = async () => {
     try {
+      // Using Firebase function to sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
+      alert('welkom ' + auth?.currentUser?.email)
     } catch (err) {
-      console.error(err);
+      // Handling errors, if any
+      console.error(err.code, err.message);
+      console.log('gegevens zijn niet juist')
+      alert('gegevens zijn niet juist')
     }
   };
 
+  // Function to handle user sign in with Google
   const handleSignInWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleprovider);
+      // Using Firebase function to sign in with Google using a popup
+      await signInWithPopup(auth, googleProvider);
+      alert('welkom ' + auth?.currentUser?.email)
     } catch (err) {
-      console.error(err);
+      // Handling errors, if any
+      console.error(err.message);
     }
   };
 
+  // Function to handle user sign out
   const handleSignOut = async () => {
     try {
+      // Using Firebase function to sign out the user
       await signOut(auth);
     } catch (err) {
-      console.error(err);
+      // Handling errors, if any
+      console.error(err.message);
     }
   };
 
+  // Rendering the login form
   return (
-    <div>
+    <div className="logincomponent">
       <h2>Login</h2>
-      <label>Email:</label>
-      <input type="email" value={email} onChange={handleEmailChange} />
-      <label>Password:</label>
-      <input type="password" value={password} onChange={handlePasswordChange} />
-      <button onClick={handleSignIn}>Sign In</button>
-      <button onClick={handleSignInWithGoogle}>Sign In with Google</button>
-      <button onClick={handleSignOut}>Logout</button>
+      <div>
+        {/* Input field for email */}
+        <label>Email:</label>
+        <input type="email" value={email} onChange={handleEmailChange} />
+      </div>
+      <div>
+        {/* Input field for password */}
+        <label>Password:</label>
+        <input type="password" value={password} onChange={handlePasswordChange} />
+      </div>
+      <div>
+        {/* Button to sign in with email and password */}
+        <button onClick={handleSignIn}>Sign In</button>
+        {/* Button to sign in with Google */}
+        <button onClick={handleSignInWithGoogle}>Sign In with Google</button>
+        {/* Button to sign out */}
+        <button onClick={handleSignOut}>Logout</button>
+      </div>
+      <div className="signup">
+        <p>Nog geen account?</p>
+        <a href="/signup" className="signupbtn">signup</a>
+      </div>
     </div>
   );
 };
