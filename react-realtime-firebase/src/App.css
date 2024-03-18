@@ -1,3 +1,8 @@
+.appjs {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -43,7 +48,7 @@
 
 }
 
-.nav{
+.nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -63,15 +68,27 @@ ul {
 
 }
 
-.logincomponent{
+.loginInputField {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 2px;
-  width: 50vw;
+  justify-content: flex-start;
 }
 
-.signup{
+.loginInputField div {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.logincomponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px;
+}
+
+.login {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,7 +99,8 @@ ul {
   margin: 5px;
   width: 15vw;
 }
-.signupbtn{
+
+.loginbtn {
   text-decoration: none;
   color: black;
   margin: 1px;
@@ -100,4 +118,46 @@ ul {
   border-color: white;
   margin: 5% 0%;
   padding: 0% 2%;
+}
+
+.signUp {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUpComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUpFormInputFields {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  margin: 10px;
+}
+
+.signUpFormInputFields input {
+  margin: 5px;
+}
+
+.signUpFormButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 20px;
+  padding: 20px 15px;
+}
+
+.signUpFormButton button {
+  margin: 6px;
 }
