@@ -60,15 +60,17 @@ const Login = () => {
   return (
     <div className="logincomponent">
       <h2>Login</h2>
-      <div>
-        {/* Input field for email */}
-        <label>Email:</label>
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </div>
-      <div>
-        {/* Input field for password */}
-        <label>Password:</label>
-        <input type="password" value={password} onChange={handlePasswordChange} />
+      <div className="loginInputField">
+        <div>
+          {/* Input field for email */}
+          <label>Email:</label>
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </div>
+        <div>
+          {/* Input field for password */}
+          <label>Password:</label>
+          <input type="password" value={password} onChange={handlePasswordChange} />
+        </div>
       </div>
       <div>
         {/* Button to sign in with email and password */}
@@ -78,9 +80,9 @@ const Login = () => {
         {/* Button to sign out */}
         <button onClick={handleSignOut}>Logout</button>
       </div>
-      <div className="signup">
+      <div className="login">
         <p>Nog geen account?</p>
-        <a href="/signup" className="signupbtn">signup</a>
+        <a href="/signup" className="loginbtn">signup</a>
       </div>
     </div>
   );

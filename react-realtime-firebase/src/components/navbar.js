@@ -7,7 +7,7 @@ export default function Navbar() {
                     <a href="/about" className="link">About</a>
                 </li>
                 <li>
-                    <a href="/insert" className="link">Add</a>
+                    <a href="/form" className="link">Add</a>
                 </li>
             </ul>
             <a href="/login" className="link">Login</a>

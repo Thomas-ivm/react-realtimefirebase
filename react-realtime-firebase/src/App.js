@@ -5,7 +5,8 @@ import Navbar from './components/navbar';
 import Home from './pages/Home'
 import About from './pages/about';
 import Login from './components/login';
-import Insert from './pages/insert';
+import { Form } from './components/form';
+import Detail from './pages/detail'
 
 function App() {
   let component
@@ -22,12 +23,15 @@ function App() {
     case "/signup":
       component = <Auth />
       break;
-    case "/insert":
-      component = <Insert />
+    case "/form":
+      component = <Form />
+      break;
+    case "/detail":
+      component = <Detail />
       break;
   }
   return (
-    <div>
+    <div className='appjs'>
       <Navbar />
       {component}
     </div>

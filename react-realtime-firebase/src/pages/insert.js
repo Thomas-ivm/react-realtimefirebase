@@ -1,10 +1,14 @@
 import { Form } from "../components/form"
 import '../App.css'
-export const Insert = () => {
+function Insert() {
     return (
         <div>
+            
             <p>hi hoe gaat het</p>
             <Form />
+
         </div>
     );
 };
+
+export default Insert;

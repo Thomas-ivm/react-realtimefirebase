@@ -50,7 +50,9 @@ function Home() {
           Learn React
         </a>
         <div>
-          {account}
+          <p>Email: {account}</p>
+          
+          <p>ID: {auth?.currentUser?.uid}</p>
           {users.map((users) => (
             <div className='info'>
               <p>id: {users.id}</p>
