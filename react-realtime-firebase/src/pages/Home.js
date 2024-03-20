@@ -7,7 +7,9 @@ import { db } from '../config/firebase';
 
 function Home() {
   const [users, setUsers] = useState([]);
+  const [posts, setPosts] = useState([]);
   const usersCollectionRef = collection(db, "users")
+  const postsCollectionRef = collection(db, "posts")
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -21,8 +23,21 @@ function Home() {
     };
 
     getUsers();
-  }, [])
+    
+    const getPosts = async () => {
+      try {
+        const data = await getDocs(postsCollectionRef);
+        const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id, }))
+        setPosts(filteredData)
+      } catch (err) {
+        console.error(err);
+        console.log('Log in om de data te zien')
+      }
+    };
 
+    getPosts();
+    
+  }, [])
   const auth = getAuth();
   const user = auth.currentUser;
   let account;
@@ -51,16 +66,26 @@ function Home() {
         </a>
         <div>
           <p>Email: {account}</p>
-          
           <p>ID: {auth?.currentUser?.uid}</p>
-          {users.map((users) => (
-            <div className='info'>
-              <p>id: {users.id}</p>
-              <p>Email: {users.email} </p>
-              <p>Naam: {users.fname} {users.lname} </p>
-              <p>role: {users.role}</p>
-            </div>
-          ))}
+          <div className='user'>
+            {users.map((users) => (
+              <div className='info'>
+                <p>id: {users.userID}</p>
+                <p>Email: {users.email} </p>
+                <p>Naam: {users.fname} {users.lname} </p>
+                <p>role: {users.role}</p>
+              </div>
+            ))}
+          </div>
+          <div className='posts'>
+            {posts.map((posts) => (
+              <div className='infoposts'>
+                <p>id: {posts.id}</p>
+                <p>Title: {posts.title}</p>
+                <p className='bericht'>Bericht: {posts.bericht}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
     </div>

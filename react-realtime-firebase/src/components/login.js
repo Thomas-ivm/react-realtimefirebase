@@ -24,7 +24,7 @@ const Login = () => {
     try {
       // Using Firebase function to sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
-      alert('welkom ' + auth?.currentUser?.email)
+      alert('welkom ' + auth?.currentUser?.uid)
     } catch (err) {
       // Handling errors, if any
       console.error(err.code, err.message);
@@ -72,17 +72,17 @@ const Login = () => {
           <input type="password" value={password} onChange={handlePasswordChange} />
         </div>
       </div>
-      <div>
+      <div className="loginbtn">
         {/* Button to sign in with email and password */}
         <button onClick={handleSignIn}>Sign In</button>
         {/* Button to sign in with Google */}
-        <button onClick={handleSignInWithGoogle}>Sign In with Google</button>
+        <button className="logInGoogle" onClick={handleSignInWithGoogle}>Sign In with Google</button>
         {/* Button to sign out */}
         <button onClick={handleSignOut}>Logout</button>
       </div>
       <div className="login">
         <p>Nog geen account?</p>
-        <a href="/signup" className="loginbtn">signup</a>
+        <a href="/signup" className="toSignUp">signup</a>
       </div>
     </div>
   );

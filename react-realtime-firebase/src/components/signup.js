@@ -1,9 +1,11 @@
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getFirestore, collection, doc, setDoc, addDoc } from "firebase/firestore";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { db } from "../config/firebase";
 
+const db = getFirestore();
+const role = 'reader';
 export const Auth = () => {
     // State variables for storing user input
     const [email, setEmail] = useState("");
@@ -11,30 +13,23 @@ export const Auth = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
-
     //signup using email and password
     const signup = async () => {
         if (password === confirmPassword) {
             try {
                 //using firebase to signup with email and password
-                await createUserWithEmailAndPassword(auth, email, password)
-                    .then(credential => {
-                        if (credential && credential.user) {
-                            db.collection("users")
-                                .doc(credential.user.uid)
-                                .set({
-                                    email: email,
-                                    password: password,
-                                    fname: fname,
-                                    lname: lname
-                                });
-                            Navigate('./Home')
-                        }
-                    })
-                    .catch(error => alert(error.message));
+                await createUserWithEmailAndPassword(auth, email, password);
+                await setDoc(doc(db, "users", auth?.currentUser?.uid), {
+                    fname,
+                    lname,
+                    email,
+                    role
+                });
+                Navigate('./Home')
             } catch (err) {
                 //handeling error
                 console.error(err);
+                alert('uhm dat ging niet goed: ' + err)
             }
         } else {
             alert('wachtwoord is niet het zelfde')
