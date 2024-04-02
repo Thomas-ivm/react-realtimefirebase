@@ -1,8 +1,6 @@
 import { useState } from "react"
 import moment from "moment";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { Navigate } from "react-router-dom";
-
 
 export const Form = () => {
     //state variables for storing user input
