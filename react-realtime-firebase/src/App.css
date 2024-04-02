@@ -88,7 +88,9 @@ ul {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 5px;
+  min-height: 100vh;
+  background-color: #282c34;
+  color: white;
 }
 
 .login {
@@ -110,10 +112,8 @@ ul {
   margin: 1%;
 }
 
-.loginbtn
-
 /*.logInGoogle*/
-  {
+.loginbtn {
   display: flex;
   justify-content: space-between;
   margin: 1%;
@@ -162,8 +162,11 @@ ul {
 .signUpComponent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  color: white;
+  min-height: 100vh;
+  background-color: #282c34;
 }
 
 .signUpFormInputFields {
@@ -197,8 +200,11 @@ ul {
 .formComponent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
+  background-color: #282c34;
+  color: white;
 }
 
 .formAll {
@@ -207,7 +213,7 @@ ul {
   justify-content: center;
   padding: 30px;
   border-style: solid;
-  border-color: black;
+  border-color: white;
   border-width: 1px;
 }
 
@@ -220,4 +226,40 @@ ul {
 .formAll textarea,
 .formAll button {
   margin: 3px;
+  background-color: white;
+  border-style: solid;
+  border-color: grey;
+  border-width: 2px;
+  border-radius: 6px;
+}
+
+.formAll input::placeholder,
+.formAll textarea::placeholder {
+  color: black;
+}
+
+/* detail */
+.detailPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+}
+
+.detailPage h1 {
+  text-decoration: underline;
+}
+
+/* about */
+.About {
+  background-color: #282c34;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
