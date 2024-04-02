@@ -37,9 +37,8 @@ function Home() {
 
     getPosts();
     
-  }, [])
+  })
   const auth = getAuth();
-  const user = auth.currentUser;
   let account;
   //check if user is logged in
   if (auth?.currentUser?.email !== null) {

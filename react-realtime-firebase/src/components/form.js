@@ -24,7 +24,6 @@ export const Form = () => {
             setTitle("");
             setBericht("")
         } catch (error) {
-            
             alert('het is niet goed gegaan');
             console.log(error.message);
         }

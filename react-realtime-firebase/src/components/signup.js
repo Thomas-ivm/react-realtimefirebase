@@ -1,6 +1,6 @@
 import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { getFirestore, collection, doc, setDoc, addDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -29,7 +29,7 @@ export const Auth = () => {
             } catch (err) {
                 //handeling error
                 console.error(err);
-                alert('uhm dat ging niet goed: ' + err)
+                alert('uhm dat ging niet goed')
             }
         } else {
             alert('wachtwoord is niet het zelfde')

@@ -9,6 +9,9 @@ export default function Navbar() {
                 <li>
                     <a href="/form" className="link">Add</a>
                 </li>
+                <li>
+                    <a href="/detail" className="link">Detail</a>
+                </li>
             </ul>
             <a href="/login" className="link">Login</a>
 
