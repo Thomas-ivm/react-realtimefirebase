@@ -5,6 +5,7 @@ function Insert() {
         <div>
             
             <p>hi hoe gaat het</p>
+            <p>deze pagina doet niks</p>
             <Form />
 
         </div>
