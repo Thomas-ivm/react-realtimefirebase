@@ -9,7 +9,7 @@
 }
 
 .App-logo {
-  height: 35vmin;
+  height: 33vmin;
   pointer-events: none;
 }
 
@@ -98,8 +98,7 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid;
   padding: 5px;
   margin: 5px;
   width: 15vw;
@@ -124,30 +123,40 @@ ul {
   color: black;
   margin: 1px;
   padding: 1% 2%;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid;
   background-color: rgb(221, 221, 221);
   border-color: grey;
   border-radius: 3px;
 }
 
 /*  */
+.userPosts {
+  display: flex;
+  flex-direction: column;
+  max-width: 50vw;
+}
+
 .user,
 .posts {
-  border-style: solid;
-  border-width: 1px;
-  border-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid white;
   padding: 5px;
   margin: 5px;
+  margin-bottom: 20px;
+  background-color: #373b44;
 }
 
 .info,
 .infoposts {
-  border-style: solid;
-  border-width: 1px;
-  border-color: white;
-  margin: 5% 0%;
+  flex-basis: 100%;
+  border: 1px solid white;
   padding: 0% 2%;
+  margin: 10px;
+  max-width: 20vw;
+  background-color: #282c34;
 }
 
 /* signup */
@@ -186,8 +195,7 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid;
   margin-top: 20px;
   padding: 20px 15px;
 }
@@ -212,9 +220,7 @@ ul {
   flex-direction: column;
   justify-content: center;
   padding: 30px;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
+  border: 1px solid white;
 }
 
 .formAll textarea {
@@ -227,9 +233,7 @@ ul {
 .formAll button {
   margin: 3px;
   background-color: white;
-  border-style: solid;
-  border-color: grey;
-  border-width: 2px;
+  border-style: 2px solid grey;
   border-radius: 6px;
 }
 

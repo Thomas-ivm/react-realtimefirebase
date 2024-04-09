@@ -2,7 +2,6 @@ import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 
 const db = getFirestore();
 const role = 'reader';
@@ -25,7 +24,6 @@ export const Auth = () => {
                     email,
                     role
                 });
-                Navigate('./Home')
             } catch (err) {
                 //handeling error
                 console.error(err);
@@ -41,6 +39,12 @@ export const Auth = () => {
         try {
             //using firebase to signup with google
             await signInWithPopup(auth, googleProvider)
+            await setDoc(doc(db, "users", auth?.currentUser?.uid), {
+                fname,
+                lname,
+                email,
+                role
+            });
         } catch (err) {
             //handeling error
             console.error(err);

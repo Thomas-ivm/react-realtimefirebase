@@ -31,13 +31,13 @@ function Home() {
         setPosts(filteredData)
       } catch (err) {
         console.error(err);
-        console.log('Log in om de data te zien')
+        console.log('Log in om de data te zien')  
       }
     };
 
     getPosts();
     
-  })
+  }, [postsCollectionRef, usersCollectionRef])
   const auth = getAuth();
   let account;
   //check if user is logged in
@@ -63,7 +63,7 @@ function Home() {
         >
           Learn React
         </a>
-        <div>
+        <div className='userPosts'>
           <p>Email: {account}</p>
           <p>ID: {auth?.currentUser?.uid}</p>
           <div className='user'>

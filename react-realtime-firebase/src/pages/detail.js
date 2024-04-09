@@ -1,7 +1,7 @@
 import { doc as firestoreDoc, setDoc } from 'firebase/firestore';
 import '../App.css';
 import { auth, db } from '../config/firebase';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function Detail() {
     const [user, setUser] = useState(null);
@@ -25,12 +25,13 @@ function Detail() {
         }
     }
 
-    useEffect(() => {
-        fetchUserInfo();
-    }, []);
+    // useEffect(() => {
+    //     fetchUserInfo();
+    // }, []);
+    fetchUserInfo()
 
     if (!user) {
-        console.log('geen gebrukers gegevens')
+        console.log('geen gebruikers gegevens')
         return null
     } else {
         return (
