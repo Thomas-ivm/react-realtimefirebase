@@ -8,9 +8,9 @@ import { db } from '../config/firebase';
 function Home() {
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
-  const usersCollectionRef = collection(db, "users")
-  const postsCollectionRef = collection(db, "posts")
   useEffect(() => {
+    const usersCollectionRef = collection(db, "users")
+    const postsCollectionRef = collection(db, "posts")
     const getUsers = async () => {
       try {
         const data = await getDocs(usersCollectionRef);
@@ -37,7 +37,7 @@ function Home() {
 
     getPosts();
     
-  }, [postsCollectionRef, usersCollectionRef])
+  }, [])
   const auth = getAuth();
   let account;
   //check if user is logged in
