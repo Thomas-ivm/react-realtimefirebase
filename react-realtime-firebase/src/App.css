@@ -133,7 +133,8 @@ ul {
 .userPosts {
   display: flex;
   flex-direction: column;
-  max-width: 50vw;
+  max-width: 75vw;
+  margin-top: 20px;
 }
 
 .user,
@@ -157,6 +158,10 @@ ul {
   margin: 10px;
   max-width: 20vw;
   background-color: #282c34;
+}
+
+.infoposts {
+  max-width: 30vw;
 }
 
 /* signup */
@@ -266,4 +271,15 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
 }

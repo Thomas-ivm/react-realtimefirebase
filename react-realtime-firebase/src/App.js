@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Auth } from "./components/signup";
 import Navbar from "./components/navbar";
@@ -7,6 +6,7 @@ import About from "./pages/about";
 import Login from "./components/login";
 import { Form } from "./components/form";
 import Detail from "./pages/detail";
+import Footer from "./components/footer";
 
 function App() {
   let component;
@@ -35,6 +35,7 @@ function App() {
     <div className="appjs">
       <Navbar />
       {component}
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import logo from "../logo.svg";
 import "../App.css";
-import { getAuth } from "firebase/auth";
 import { getDocs, collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
@@ -47,16 +46,6 @@ function Home() {
 
   console.log(users, posts);
 
-  const auth = getAuth();
-  let account;
-  //check if user is logged in
-  if (auth?.currentUser?.email !== null) {
-    //user is logged in
-    account = auth?.currentUser?.email;
-  } else {
-    //user is not logged in
-    account = "je bent niet ingelogt";
-  }
   return (
     <div className="App">
       <header className="App-header">
@@ -73,8 +62,6 @@ function Home() {
           Learn React
         </a>
         <div className="userPosts">
-          <p>Email: {account}</p>
-          <p>ID: {auth?.currentUser?.uid}</p>
           <div className="user">
             {users.map((users) => (
               <div className="info">
@@ -90,7 +77,7 @@ function Home() {
               <div className="infoposts">
                 <p>id: {posts.id}</p>
                 <p>Title: {posts.title}</p>
-                <p className="bericht">Bericht: {posts.bericht}</p>
+                <p className="bericht">Bericht: </p><p>{posts.bericht}</p>
               </div>
             ))}
           </div>
