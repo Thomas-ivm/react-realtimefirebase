@@ -1,37 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
-import { Auth } from './components/signup';
-import Navbar from './components/navbar';
-import Home from './pages/Home'
-import About from './pages/about';
-import Login from './components/login';
-import { Form } from './components/form';
-import Detail from './pages/detail'
+import logo from "./logo.svg";
+import "./App.css";
+import { Auth } from "./components/signup";
+import Navbar from "./components/navbar";
+import Home from "./pages/Home";
+import About from "./pages/about";
+import Login from "./components/login";
+import { Form } from "./components/form";
+import Detail from "./pages/detail";
 
 function App() {
-  let component
+  let component;
   switch (window.location.pathname) {
     case "/":
-      component = <Home />
+      component = <Home />;
       break;
     case "/about":
-      component = <About />
+      component = <About />;
       break;
     case "/login":
-      component = <Login />
+      component = <Login />;
       break;
     case "/signup":
-      component = <Auth />
+      component = <Auth />;
       break;
     case "/form":
-      component = <Form />
+      component = <Form />;
       break;
     case "/detail":
-      component = <Detail />
+      component = <Detail />;
       break;
+    default:
   }
   return (
-    <div className='appjs'>
+    <div className="appjs">
       <Navbar />
       {component}
     </div>
