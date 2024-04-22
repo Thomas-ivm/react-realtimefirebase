@@ -7,7 +7,6 @@ import { db } from "../config/firebase";
 function Home() {
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
-
   // useEffect to store user and post data in localstorage
   useEffect(() => {
     localStorage.setItem("check", 1);
@@ -77,7 +76,8 @@ function Home() {
               <div className="infoposts">
                 <p>id: {posts.id}</p>
                 <p>Title: {posts.title}</p>
-                <p className="bericht">Bericht: </p><p>{posts.bericht}</p>
+                <p className="bericht">Bericht: </p>
+                <p>{posts.bericht}</p>
               </div>
             ))}
           </div>

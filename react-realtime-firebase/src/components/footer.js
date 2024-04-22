@@ -1,7 +1,10 @@
 export default function Footer() {
-    return(
+  return (
     <footer>
-    <a href="https://github.com/ThomasIVM/react-realtimefirebase">Github</a>
+      <p>
+        <a href="https://github.com/ThomasIVM/react-realtimefirebase">Github</a>{" | "}
+        Thomas Meijer | ICT vanaf morgen &copy;
+      </p>
     </footer>
-    )
+  );
 }
