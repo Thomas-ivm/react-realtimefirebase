@@ -2,7 +2,7 @@ import { useState } from "react"
 import moment from "moment";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
-export const Form = () => {
+function Form() {
     //state variables for storing user input
     const [title, setTitle] = useState("");
     const [bericht, setBericht] = useState("");
@@ -42,3 +42,5 @@ export const Form = () => {
         </div>
     )
 }
+
+export default Form
