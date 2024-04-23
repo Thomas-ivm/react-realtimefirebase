@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const db = getFirestore();
 const role = 'reader';
-export const Auth = () => {
+function SignUp() {
     // State variables for storing user input
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -69,3 +69,5 @@ export const Auth = () => {
         </div>
     )
 }
+
+export default SignUp;
