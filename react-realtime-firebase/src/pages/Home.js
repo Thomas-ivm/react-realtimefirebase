@@ -39,12 +39,12 @@ function Home() {
           console.error(err);
           console.log("Log in om de data te zien");
         }
-    };
-    getUsersAndPosts();
-  }, []);
-
+      };
+      getUsersAndPosts();
+    }, []);
+    // const uid = auth?.currentUser?.uid;
+    // console.log(uid);
   console.log(users, posts);
-
   return (
     <div className="App">
       <header className="App-header">
@@ -66,7 +66,9 @@ function Home() {
               <div className="info">
                 <p>id: {users.userID}</p>
                 <p>Email: {users.email} </p>
-                <p>Naam: {users.fname} {users.lname}</p>
+                <p>
+                  Naam: {users.fname} {users.lname}
+                </p>
                 <p>role: {users.role}</p>
               </div>
             ))}

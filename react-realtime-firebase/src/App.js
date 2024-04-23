@@ -1,42 +1,40 @@
-import "./App.css";
-import { Auth } from "./components/signup";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
 import Home from "./pages/Home";
 import About from "./pages/about";
 import Login from "./components/login";
-import { Form } from "./components/form";
+import SignUp from "./components/signup";
+import Form from "./components/form";
 import Detail from "./pages/detail";
 import Footer from "./components/footer";
 
 function App() {
-  let component;
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break;
-    case "/about":
-      component = <About />;
-      break;
-    case "/login":
-      component = <Login />;
-      break;
-    case "/signup":
-      component = <Auth />;
-      break;
-    case "/form":
-      component = <Form />;
-      break;
-    case "/detail":
-      component = <Detail />;
-      break;
-    default:
-  }
+
+  const [pathname, setPathname] = useState(null);
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, []);
+
+  const uid = localStorage.getItem('auth');
+  var detailUrl = `/detail/:${uid}`;
+  console.log(detailUrl);
   return (
-    <div className="appjs">
-      <Navbar />
-      {component}
-      <Footer />
-    </div>
+    <Router>
+      <div className="appjs">
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/form" element={<Form />} />
+          <Route path="/detail/:uid" element={<Detail />}/>
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

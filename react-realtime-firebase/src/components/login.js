@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import '../App.css';
 import { auth, googleProvider } from "../config/firebase"; // Importing Firebase authentication configuration
 import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"; // Importing Firebase authentication functions
+import { useNavigate } from "react-router-dom";
 
 // Functional component for handling user login
 const Login = () => {
   // State variables for storing user input
   const [email, setEmail] = useState(""); // State variable for email
   const [password, setPassword] = useState(""); // State variable for password
+  const navigate = useNavigate();
 
   // Function to update state with entered email
   const handleEmailChange = (e) => {
@@ -25,6 +27,8 @@ const Login = () => {
       // Using Firebase function to sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
       alert('welkom ' + auth?.currentUser?.uid)
+      navigate('/')
+      localStorage.setItem('auth', auth?.currentUser?.uid);
     } catch (err) {
       // Handling errors, if any
       console.error(err.code, err.message);
@@ -38,7 +42,8 @@ const Login = () => {
     try {
       // Using Firebase function to sign in with Google using a popup
       await signInWithPopup(auth, googleProvider);
-      alert('welkom ' + auth?.currentUser?.email)
+      alert('welkom ' + auth?.currentUser?.email);
+      navigate('/')
     } catch (err) {
       // Handling errors, if any
       console.error(err.message);
@@ -50,6 +55,11 @@ const Login = () => {
     try {
       // Using Firebase function to sign out the user
       await signOut(auth);
+      localStorage.setItem('auth', '');
+      setTimeout(function(){
+        navigate('/detail');
+        window.location.reload();
+     }, 2500);
     } catch (err) {
       // Handling errors, if any
       console.error(err.message);

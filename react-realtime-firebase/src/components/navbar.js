@@ -1,4 +1,6 @@
 export default function Navbar() {
+    const uid = localStorage.getItem('auth');
+    var detailUrl = `/detail/${uid}`;
     return (
         <nav className="nav">
             <a href="/" className="link">Home</a>
@@ -10,7 +12,7 @@ export default function Navbar() {
                     <a href="/form" className="link">Add</a>
                 </li>
                 <li>
-                    <a href="/detail" className="link">Detail</a>
+                    <a href={detailUrl} className="link">Detail</a>
                 </li>
             </ul>
             <a href="/login" className="link">Login</a>
