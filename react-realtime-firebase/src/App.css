@@ -265,6 +265,19 @@ ul {
   text-decoration: underline;
 }
 
+.detailinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1%;
+  border: 1px solid white;
+  }
+
+.detailinfo div {
+  margin: 5px;
+}
+
 /* about */
 .About {
   background-color: #282c34;
@@ -276,6 +289,7 @@ ul {
   justify-content: flex-start;
 }
 
+/* footer */
 footer {
   color: white;
   display: flex;
@@ -286,4 +300,25 @@ footer {
 footer a {
   text-decoration: none;
   color: white;
+}
+
+/* edit */
+.edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+}
+
+.editinvoer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edit input {
+  margin: 5px;
 }

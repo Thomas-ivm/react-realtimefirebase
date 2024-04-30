@@ -3,7 +3,7 @@ export default function Footer() {
     <footer>
       <p>
         <a href="https://github.com/ThomasIVM/react-realtimefirebase">Github</a>{" | "}
-        Thomas Meijer | ICT vanaf morgen &copy;
+        Thomas Meijer | ICT vanaf morgen <a href="https://nl.wikipedia.org/wiki/Copyright">&copy;</a>
       </p>
     </footer>
   );

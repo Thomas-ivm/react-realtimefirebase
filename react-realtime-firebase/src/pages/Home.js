@@ -78,6 +78,7 @@ function Home() {
               <div className="infoposts">
                 <p>id: {posts.id}</p>
                 <p>Title: {posts.title}</p>
+                <p>Time: {posts.timestamp}</p>
                 <p className="bericht">Bericht: </p>
                 <p>{posts.bericht}</p>
               </div>

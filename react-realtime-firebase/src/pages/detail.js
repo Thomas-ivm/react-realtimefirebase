@@ -2,10 +2,13 @@ import { doc as firestoreDoc, getDoc } from "firebase/firestore";
 import "../App.css";
 import { db } from "../config/firebase";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Detail() {
+  const navigate = useNavigate();
+
   var uid = localStorage.getItem("auth");
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const docRef = firestoreDoc(db, "users", uid);
@@ -17,20 +20,25 @@ function Detail() {
       } else {
         const user = doc.data();
         console.log("Document data:", user);
-        setUsers(user)
+        setUsers(user);
       }
     });
   }, [uid]);
 
+  const toEdit = async () => {
+    navigate(`/edit/${uid}`);
+  };
+
   return (
     <div className="detailPage">
       <h1>Your account</h1>
-      <div>Email: {uid}</div>
-      <div>UID: {uid}</div>
-      <div>Naam: {users && users.fname}</div>
-      <div>Role: {users && users.role}</div>
-      <div></div>
-    </div>    
+      <div className="detailinfo">
+        <div>Email: {users.email}</div>
+        <div>Naam: {users.fname} {users.lname}</div>
+        <div>Role: {users.rol}</div>
+      </div>
+      <button onClick={toEdit}>Edit</button>
+    </div>
   );
 }
 

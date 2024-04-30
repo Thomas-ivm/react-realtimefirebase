@@ -1,8 +1,10 @@
 import { useState } from "react"
 import moment from "moment";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
+    const navigate = useNavigate();
     //state variables for storing user input
     const [title, setTitle] = useState("");
     const [bericht, setBericht] = useState("");
@@ -21,6 +23,7 @@ function Form() {
             alert('het is gelukt');
             setTitle("");
             setBericht("")
+            navigate('/')
         } catch (error) {
             alert('het is niet goed gegaan');
             console.log(error.message);

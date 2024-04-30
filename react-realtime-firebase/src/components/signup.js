@@ -2,10 +2,12 @@ import { auth, googleProvider } from "../config/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const db = getFirestore();
 const role = 'reader';
 function SignUp() {
+    const navigate = useNavigate();
     // State variables for storing user input
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,6 +26,8 @@ function SignUp() {
                     email,
                     role
                 });
+                navigate('/')
+
             } catch (err) {
                 //handeling error
                 console.error(err);
@@ -45,6 +49,8 @@ function SignUp() {
                 email,
                 role
             });
+            navigate('/')
+
         } catch (err) {
             //handeling error
             console.error(err);

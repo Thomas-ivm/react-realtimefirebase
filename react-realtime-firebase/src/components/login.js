@@ -43,6 +43,7 @@ const Login = () => {
       // Using Firebase function to sign in with Google using a popup
       await signInWithPopup(auth, googleProvider);
       alert('welkom ' + auth?.currentUser?.email);
+      localStorage.setItem('auth', auth?.currentUser?.uid);
       navigate('/')
     } catch (err) {
       // Handling errors, if any
@@ -57,7 +58,7 @@ const Login = () => {
       await signOut(auth);
       localStorage.setItem('auth', '');
       setTimeout(function(){
-        navigate('/detail');
+        navigate('/');
         window.location.reload();
      }, 2500);
     } catch (err) {
