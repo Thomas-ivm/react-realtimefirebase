@@ -5,12 +5,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Edit() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  var uid = localStorage.getItem("auth");
+  
+  const [users, setUsers] = useState([]);
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
-    
-    var uid = localStorage.getItem("auth");
-    const [users, setUsers] = useState([]);
 
     useEffect(() => {
       const docRef = doc(db, "users", uid);
