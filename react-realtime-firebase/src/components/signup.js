@@ -38,6 +38,10 @@ function SignUp() {
         }
     };
 
+    const backToLogin = async () => {
+        navigate('/login')
+    }
+
     //signup using google
     const signupWithGoogle = async () => {
         try {
@@ -72,6 +76,7 @@ function SignUp() {
                 <button onClick={signup}> Sign up</button>
                 <button onClick={signupWithGoogle}>Sign up with Goolge</button>
             </div>
+                <button onClick={backToLogin}>terug</button>
         </div>
     )
 }
