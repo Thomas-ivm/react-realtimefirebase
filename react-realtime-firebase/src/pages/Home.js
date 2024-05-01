@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
 
 function Home() {
+  const uid = localStorage.getItem('auth');
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
   // useEffect to store user and post data in localstorage
@@ -45,6 +46,37 @@ function Home() {
     // const uid = auth?.currentUser?.uid;
     // console.log(uid);
   console.log(users, posts);
+    let text
+    if(uid === null | uid === ""){
+      text = "je bent niet ingelogd"
+    } else {
+      text = 
+      <div className="userPosts">
+      <div className="user">
+        {users.map((users) => (
+          <div className="info">
+            {/* <p>id: {users.userID}</p> */}
+            <p>Email: {users.email} </p>
+            <p>
+              Naam: {users.fname} {users.lname}
+            </p>
+            <p>role: {users.role}</p>
+          </div>
+        ))}
+      </div>
+      <div className="posts">
+        {posts.map((posts) => (
+          <div className="infoposts">
+            {/* <p>id: {posts.id}</p> */}
+            <p>Title: {posts.title}</p>
+            <p>Time: {posts.timestamp}</p>
+            <p className="bericht">Bericht: </p>
+            <p>{posts.bericht}</p>
+          </div>
+        ))}
+      </div>
+    </div> 
+    }
   return (
     <div className="App">
       <header className="App-header">
@@ -60,31 +92,7 @@ function Home() {
         >
           Learn React
         </a>
-        <div className="userPosts">
-          <div className="user">
-            {users.map((users) => (
-              <div className="info">
-                <p>id: {users.userID}</p>
-                <p>Email: {users.email} </p>
-                <p>
-                  Naam: {users.fname} {users.lname}
-                </p>
-                <p>role: {users.role}</p>
-              </div>
-            ))}
-          </div>
-          <div className="posts">
-            {posts.map((posts) => (
-              <div className="infoposts">
-                <p>id: {posts.id}</p>
-                <p>Title: {posts.title}</p>
-                <p>Time: {posts.timestamp}</p>
-                <p className="bericht">Bericht: </p>
-                <p>{posts.bericht}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <p>{text}</p>
       </header>
     </div>
   );
