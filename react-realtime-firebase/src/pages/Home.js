@@ -22,7 +22,6 @@ function Home() {
         try {
           const usersCollectionRef = collection(db, "users");
           const postsCollectionRef = collection(db, "posts");
-
           const usersData = await getDocs(usersCollectionRef); // Fetch users separately
           const postsData = await getDocs(postsCollectionRef); // Fetch posts separately
           const usersFilteredData = usersData.docs.map((doc) => ({
