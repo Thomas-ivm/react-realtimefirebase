@@ -9,6 +9,7 @@ import Form from "./components/form";
 import Detail from "./pages/detail";
 import Footer from "./components/footer";
 import Edit from "./pages/edit";
+import Logout from "./components/logout";
 
 function App() {
 
@@ -18,9 +19,10 @@ function App() {
     setPathname(window.location.pathname);
   }, []);
 
-  // const uid = localStorage.getItem('auth');
-  // var detailUrl = `/detail/:${uid}`;
-  // console.log(detailUrl);
+  const uid = localStorage.getItem('auth');
+  var detailUrl = `/detail/:${uid}`;
+  console.log(detailUrl);
+  console.log(uid)
   return (
     <Router>
       <div className="appjs">
@@ -32,7 +34,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/form" element={<Form />} />
           <Route path="/detail/:uid" element={<Detail />}/>
-          <Route path="/edit" element={<Edit />}/>
+          <Route path="/edit/:uid" element={<Edit />}/>
+          <Route path="/logout" element={<Logout />}/>
         </Routes>
         <Footer />
       </div>

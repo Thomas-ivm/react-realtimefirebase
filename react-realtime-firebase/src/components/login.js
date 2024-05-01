@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import '../App.css';
 import { auth, googleProvider } from "../config/firebase"; // Importing Firebase authentication configuration
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"; // Importing Firebase authentication functions
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"; // Importing Firebase authentication functions
 import { useNavigate } from "react-router-dom";
 
 // Functional component for handling user login
@@ -29,6 +29,7 @@ const Login = () => {
       alert('welkom ' + auth?.currentUser?.uid)
       navigate('/')
       localStorage.setItem('auth', auth?.currentUser?.uid);
+      window.location.reload();
     } catch (err) {
       // Handling errors, if any
       console.error(err.code, err.message);
@@ -45,6 +46,7 @@ const Login = () => {
       alert('welkom ' + auth?.currentUser?.email);
       localStorage.setItem('auth', auth?.currentUser?.uid);
       navigate('/')
+      window.location.reload();
     } catch (err) {
       // Handling errors, if any
       console.error(err.message);
@@ -52,20 +54,20 @@ const Login = () => {
   };
 
   // Function to handle user sign out
-  const handleSignOut = async () => {
-    try {
-      // Using Firebase function to sign out the user
-      await signOut(auth);
-      localStorage.setItem('auth', '');
-      setTimeout(function(){
-        navigate('/');
-        window.location.reload();
-     }, 2500);
-    } catch (err) {
-      // Handling errors, if any
-      console.error(err.message);
-    }
-  };
+  // const handleSignOut = async () => {
+  //   try {
+  //     // Using Firebase function to sign out the user
+  //     await signOut(auth);
+  //     localStorage.setItem('auth', '');
+  //     // setTimeout(function(){
+  //       navigate('/');
+  //   //     window.location.reload();
+  //   //  }, 2500);
+  //   } catch (err) {
+  //     // Handling errors, if any
+  //     console.error(err.message);
+  //   }
+  // };
 
   // Rendering the login form
   return (
@@ -89,7 +91,7 @@ const Login = () => {
         {/* Button to sign in with Google */}
         <button className="logInGoogle" onClick={handleSignInWithGoogle}>Sign In with Google</button>
         {/* Button to sign out */}
-        <button onClick={handleSignOut}>Logout</button>
+        {/* <button onClick={handleSignOut}>Logout</button> */}
       </div>
       <div className="login">
         <p>Nog geen account?</p>
