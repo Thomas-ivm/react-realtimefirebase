@@ -55,7 +55,7 @@ function Home() {
         {users.map((users) => (
           <div className="info">
             {/* <p>id: {users.userID}</p> */}
-            <p>Email: {users.email} </p>
+            <p>Email: <br/> {users.email} </p>
             <p>
               Naam: {users.fname} {users.lname}
             </p>
@@ -91,7 +91,7 @@ function Home() {
         >
           Learn React
         </a>
-        <p>{text}</p>
+        <div>{text}</div>
       </header>
     </div>
   );
