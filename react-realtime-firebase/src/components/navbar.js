@@ -4,13 +4,18 @@ export default function Navbar() {
 
     let logbutton
     let text
+    let form
+    let formText
     if (uid === null | uid === "" ) {
         logbutton = '/login';
          text = "Login"
     }else{
         logbutton = '/logout';
-        text = "logout"
+        text = " logout"
+        form = '/form'
+        formText = "Add"
     }
+    
     console.log(uid)
     return (
         <nav className="nav">
@@ -20,7 +25,7 @@ export default function Navbar() {
                     <a href="/about" className="link">About</a>
                 </li>
                 <li>
-                    <a href="/form" className="link">Add</a>
+                    <a href={form} className="link">{formText}</a>
                 </li>
                 <li>
                     <a href={detailUrl} className="link">Detail</a>
