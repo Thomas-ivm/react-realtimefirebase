@@ -35,7 +35,7 @@ function Detail() {
       <div className="detailinfo">
         <div>Email: {users.email}</div>
         <div>Naam: {users.fname} {users.lname}</div>
-        <div>Role: {users.rol}</div>
+        <div>Role: {users.role}</div>
       </div>
       <button onClick={toEdit}>Edit</button>
     </div>
