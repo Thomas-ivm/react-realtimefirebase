@@ -3,8 +3,10 @@ import "../App.css";
 import { getDocs, collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate()
   const uid = localStorage.getItem('auth');
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -44,21 +46,39 @@ function Home() {
     }, []);
     // const uid = auth?.currentUser?.uid;
     // console.log(uid);
+
+    const toLogin = async () => {
+      navigate('/login')
+    }
+
   console.log(users, posts);
-    let text
+    
+
+let editPostButton;
+
+if (users.role === "writer") {
+  editPostButton = <button>Edit</button>;
+} else if (users.role === undefined) {
+  editPostButton = <div>Loading...</div>;
+} else {
+  editPostButton = null;
+}
+
+  let text
     if(uid === null | uid === ""){
-      text = "je bent niet ingelogd"
+      text = 
+      <div className="homeNotLoggedin"> "je bent niet ingelogd"
+      <button onClick={toLogin}>Login</button></div>
     } else {
       text = 
       <div className="userPosts">
       <div className="user">
+      <p>{users.role}</p>
         {users.map((users) => (
           <div className="info">
             {/* <p>id: {users.userID}</p> */}
             <p>Email: <br/> {users.email} </p>
-            <p>
-              Naam: {users.fname} {users.lname}
-            </p>
+            <p>Naam: {users.fname} {users.lname}</p>
             <p>role: {users.role}</p>
           </div>
         ))}
@@ -71,11 +91,13 @@ function Home() {
             <p>Time: {posts.timestamp}</p>
             <p className="bericht">Bericht: </p>
             <p>{posts.bericht}</p>
+            <p>{editPostButton}</p>
           </div>
         ))}
       </div>
     </div> 
     }
+
   return (
     <div className="App">
       <header className="App-header">
