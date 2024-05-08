@@ -49,6 +49,20 @@
 
 }
 
+.homeNotLoggedin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.homeNotLoggedin button {
+  width: 20%;
+  margin-top: 5%;
+  cursor: pointer;
+}
+
 /* Navbar */
 .nav {
   display: flex;
@@ -57,7 +71,8 @@
   align-items: center;
 }
 
-.nav, footer {
+.nav,
+footer {
   background-color: rgb(0, 0, 130);
 }
 
@@ -71,6 +86,12 @@ ul {
   text-decoration: none;
   list-style-type: none;
 
+}
+
+.link:hover {
+  text-decoration-line: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2;
 }
 
 /* login */
@@ -119,6 +140,11 @@ ul {
   display: flex;
   justify-content: space-between;
   margin: 1%;
+}
+
+.loginbtn button {
+  margin: 4px;
+  cursor: pointer;
 }
 
 .toSignUp {
@@ -246,6 +272,11 @@ ul {
   border-radius: 6px;
 }
 
+.formAll button:hover {
+  cursor: pointer;
+  background-color: rgb(175, 175, 175);
+}
+
 .formAll input::placeholder,
 .formAll textarea::placeholder {
   color: black;
@@ -273,10 +304,22 @@ ul {
   align-items: center;
   margin-bottom: 1%;
   border: 1px solid white;
-  }
+}
 
 .detailinfo div {
   margin: 5px;
+}
+
+.detailPage button {
+  min-width: 3vw;
+  min-height: 3vh;
+  border: 1px solid black ;
+  border-radius: 5px;
+}
+
+.detailPage button:hover{
+  cursor: pointer;
+  background-color: #b3b3b3;
 }
 
 /* about */
@@ -320,6 +363,72 @@ footer a {
   justify-content: space-between;
 }
 
+.editinvoer button {
+  border: 1px solid black ;
+  border-radius: 10px;
+}
+
+.editinvoer button:hover {
+  cursor:pointer;
+  background-color: #b3b3b3;
+}
+
 .edit input {
   margin: 5px;
+}
+
+/* logout */
+.logout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ background-color: #282c34;
+ min-height: 100vh;
+}
+
+.logoutField{
+  background-color: #373b44;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  padding: 2%;
+  border: 1px solid white;
+  min-height: 5vw;
+  min-width: 10vw;
+  margin: 2vw
+}
+
+.logOutButtons /*.yep, .logOutButtons .Nope*/{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-width: 10vw;
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+
+.logOutButtons button {
+  min-height: 30px;
+  min-width: 50px;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+  /* background-color: #282c34; */
+  border: 1px solid black;
+  /* color: white; */
+  border-radius: 5px;
+}
+
+.logOutButtons button:hover{
+  cursor: pointer;
+  background-color: #b8b8b8;
+}
+
+.logOutButtons .Nope {
+  background-color: #0059e7;
+}
+.logOutButtons .Nope:hover{
+  background-color: #0240a5;
 }
