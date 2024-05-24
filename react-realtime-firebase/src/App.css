@@ -313,11 +313,11 @@ ul {
 .detailPage button {
   min-width: 3vw;
   min-height: 3vh;
-  border: 1px solid black ;
+  border: 1px solid black;
   border-radius: 5px;
 }
 
-.detailPage button:hover{
+.detailPage button:hover {
   cursor: pointer;
   background-color: #b3b3b3;
 }
@@ -346,6 +346,11 @@ footer a {
   color: white;
 }
 
+footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* edit */
 .edit {
   display: flex;
@@ -364,12 +369,12 @@ footer a {
 }
 
 .editinvoer button {
-  border: 1px solid black ;
+  border: 1px solid black;
   border-radius: 10px;
 }
 
 .editinvoer button:hover {
-  cursor:pointer;
+  cursor: pointer;
   background-color: #b3b3b3;
 }
 
@@ -382,11 +387,11 @@ footer a {
   display: flex;
   flex-direction: column;
   align-items: center;
- background-color: #282c34;
- min-height: 100vh;
+  background-color: #282c34;
+  min-height: 100vh;
 }
 
-.logoutField{
+.logoutField {
   background-color: #373b44;
   display: flex;
   flex-direction: column;
@@ -400,7 +405,7 @@ footer a {
   margin: 2vw
 }
 
-.logOutButtons /*.yep, .logOutButtons .Nope*/{
+.logOutButtons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -421,7 +426,7 @@ footer a {
   border-radius: 5px;
 }
 
-.logOutButtons button:hover{
+.logOutButtons button:hover {
   cursor: pointer;
   background-color: #b8b8b8;
 }
@@ -429,6 +434,16 @@ footer a {
 .logOutButtons .Nope {
   background-color: #0059e7;
 }
-.logOutButtons .Nope:hover{
+
+.logOutButtons .Nope:hover {
   background-color: #0240a5;
+}
+
+.editPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
 }
