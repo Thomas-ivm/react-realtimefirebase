@@ -16,7 +16,6 @@ export default function Navbar() {
         formText = "Add"
     }
     
-    console.log(uid)
     return (
         <nav className="nav">
             <a href="/" className="link">Home</a>

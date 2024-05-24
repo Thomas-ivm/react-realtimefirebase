@@ -38,8 +38,9 @@ function Edit() {
         await updateDoc(userRef, {
           fname,
           lname,
-          role
+          role,
         });
+        localStorage.setItem("currentUserInfo", JSON.stringify(users))
         navigate(`/detail/${uid}`)
       } catch(error) {
         console.log(error.message)
@@ -53,7 +54,7 @@ function Edit() {
     <div className="edit">
       <h1>Edit</h1>
       <div className="editinvoer">
-        <input required type="text" placeholder={users.fname} onChange={(e) => setFname(e.target.value)} />
+        <input required type="text" placeholder={users.fname} onChange={(e) => setFname(e.target.value)}/>
         <input required type="text" placeholder={users.lname} onChange={(e) => setLname(e.target.value)}/>
         <div>
           <select name="selectRole" value={role}

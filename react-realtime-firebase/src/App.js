@@ -10,6 +10,8 @@ import Detail from "./pages/detail";
 import Footer from "./components/footer";
 import Edit from "./pages/edit";
 import Logout from "./components/logout";
+import EditPost from "./pages/editpost";
+import Insert from "./pages/insert";
 
 function App() {
 
@@ -36,6 +38,8 @@ function App() {
           <Route path="/detail/:uid" element={<Detail />}/>
           <Route path="/edit/:uid" element={<Edit />}/>
           <Route path="/logout" element={<Logout />}/>
+          <Route path="/editpost" element={<EditPost />}/>
+          <Route path="/insert" element={<Insert />}/>
         </Routes>
         <Footer />
       </div>

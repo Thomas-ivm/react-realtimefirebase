@@ -26,9 +26,11 @@ const Login = () => {
     try {
       // Using Firebase function to sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
-      alert('welkom ' + auth?.currentUser?.uid)
-      navigate('/')
-      localStorage.setItem('auth', auth?.currentUser?.uid);
+      const uid = auth?.currentUser?.uid
+      alert('welkom ' + uid)
+      navigate('/insert')
+      localStorage.setItem('auth', uid);
+      localStorage.setItem('authEmail', auth?.currentUser?.email);
       window.location.reload();
     } catch (err) {
       // Handling errors, if any
@@ -45,8 +47,9 @@ const Login = () => {
       await signInWithPopup(auth, googleProvider);
       alert('welkom ' + auth?.currentUser?.email);
       localStorage.setItem('auth', auth?.currentUser?.uid);
-      navigate('/')
+      localStorage.setItem('authEmail', auth?.currentUser?.email);
       window.location.reload();
+      navigate('/insert')
     } catch (err) {
       // Handling errors, if any
       console.error(err.message);

@@ -6,97 +6,119 @@ import { db } from "../config/firebase";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate()
-  const uid = localStorage.getItem('auth');
+  const navigate = useNavigate();
+
+  const uid = localStorage.getItem("auth");
+  const authEmail = localStorage.getItem("authEmail");
+  const currentUser = localStorage.getItem("currentUserInfo");
+
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
-  // useEffect to store user and post data in localstorage
-  useEffect(() => {
-    localStorage.setItem("check", 1);
-    localStorage.setItem("users", JSON.stringify(users)); // Corrected keys
-    localStorage.setItem("posts", JSON.stringify(posts)); // Corrected keys
-  }, [users, posts]);
 
+  // Haal user en post data op uit Firestore
   useEffect(() => {
-    var check = localStorage.getItem("check");
     const getUsersAndPosts = async () => {
-      if (check >= 1)
-        try {
-          const usersCollectionRef = collection(db, "users");
-          const postsCollectionRef = collection(db, "posts");
-          const usersData = await getDocs(usersCollectionRef); // Fetch users separately
-          const postsData = await getDocs(postsCollectionRef); // Fetch posts separately
-          const usersFilteredData = usersData.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          const postsFilteredData = postsData.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          setUsers(usersFilteredData);
-          setPosts(postsFilteredData);
-          check--;
-        } catch (err) {
-          console.error(err);
-          console.log("Log in om de data te zien");
-        }
-      };
-      getUsersAndPosts();
-    }, []);
-    // const uid = auth?.currentUser?.uid;
-    // console.log(uid);
+      try {
+        const usersCollectionRef = collection(db, "users");
+        const postsCollectionRef = collection(db, "posts");
 
-    const toLogin = async () => {
-      navigate('/login')
-    }
+        const usersSnapshot = await getDocs(usersCollectionRef);
+        const postsSnapshot = await getDocs(postsCollectionRef);
 
-  console.log(users, posts);
-    
+        const usersData = usersSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        const postsData = postsSnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
 
-let editPostButton;
+        setUsers(usersData);
+        setPosts(postsData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUsersAndPosts();
+  }, []);
+  console.log(users, posts)
+  
+ // useEffect to store user and post data in localstorage
+useEffect(() => {
+  localStorage.setItem("check", 1);
+  localStorage.setItem("users", JSON.stringify(users)); // Corrected keys
+  localStorage.setItem("posts", JSON.stringify(posts)); // Corrected keys
+  }, [users, posts]);
+  
+  // Zoek de role van de huidige gebruiker in de currentUserInfo array
+  if(currentUser !== null){
 
-if (users.role === "writer") {
-  editPostButton = <button>Edit</button>;
-} else if (users.role === undefined) {
-  editPostButton = <div>Loading...</div>;
-} else {
-  editPostButton = null;
-}
+  }else{
+    console.log("er is geen data ")
+  }
 
-  let text
-    if(uid === null | uid === ""){
-      text = 
-      <div className="homeNotLoggedin"> "je bent niet ingelogd"
-      <button onClick={toLogin}>Login</button></div>
-    } else {
-      text = 
+  // Bepaal of de knop moet worden weergegeven
+  // const userRole = localStorage.getItem("currentUserRole");
+  const toPostEdit = async () => {
+    navigate("/editpost")
+  }
+
+  let editPostButton;
+  // const writerUid = currentUser;
+  if (/*uid === writerUid ||*/ currentUser === "writer" || currentUser === "owner") {
+    editPostButton = <button onClick={toPostEdit}>Edit</button>;
+  } else {
+    editPostButton = null; // Geen knop als de rol niet overeenkomt
+  }
+
+  // Ga naar de login pagina als er geen gebruiker is
+  const toLogin = async () => {
+    navigate("/login");
+  };
+
+  let text;
+  if ((uid === null) || (uid === "")) {
+    text = (
+      <div className="homeNotLoggedin">
+        "je bent niet ingelogd"
+        <button onClick={toLogin}>Login</button>
+      </div>
+    );
+  } else {
+    text = (
       <div className="userPosts">
-      <div className="user">
-      <p>{users.role}</p>
-        {users.map((users) => (
-          <div className="info">
-            {/* <p>id: {users.userID}</p> */}
-            <p>Email: <br/> {users.email} </p>
-            <p>Naam: {users.fname} {users.lname}</p>
-            <p>role: {users.role}</p>
-          </div>
-        ))}
+        <p>{authEmail}</p>
+        <div className="user">
+          {users.map((users) => (
+            <div className="info">
+              {/* <p>id: {users.userID}</p> */}
+              <p>
+                Email: <br /> {users.email}
+              </p>
+              <p>
+                Naam: {users.fname} {users.lname}
+              </p>
+              <p>role: {users.role}</p>
+            </div>
+          ))}
+        </div>
+        <div className="posts">
+          {posts.map((posts) => (
+            <div className="infoposts">
+              {/* <p>id: {posts.id}</p> */}
+              <p>Title: {posts.title}</p>
+              <p>Time: {posts.timestamp}</p>
+              <p className="bericht">Bericht: </p>
+              <p>{posts.bericht}</p>
+              <p>{posts.uid}</p>
+              <p>{editPostButton}</p>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="posts">
-        {posts.map((posts) => (
-          <div className="infoposts">
-            {/* <p>id: {posts.id}</p> */}
-            <p>Title: {posts.title}</p>
-            <p>Time: {posts.timestamp}</p>
-            <p className="bericht">Bericht: </p>
-            <p>{posts.bericht}</p>
-            <p>{editPostButton}</p>
-          </div>
-        ))}
-      </div>
-    </div> 
-    }
+    );
+  }
 
   return (
     <div className="App">

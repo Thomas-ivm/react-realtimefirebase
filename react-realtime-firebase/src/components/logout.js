@@ -5,22 +5,22 @@ import { auth } from "../config/firebase";
 
 const Logout = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(true);
+  const show = useState(true);
 
-  const handleClose = () => {
-    // Prevent the user from closing the modal
-  };
+  // const handleClose = () => {
+  //   // Prevent the user from closing the modal
+  // };
 
   return (
     <div className="logout">
-      <div className="logoutField" show={show} onHide={handleClose} backdrop="static" keyboard={false}>
+      <div className="logoutField" show={show} /*onHide={handleClose}*/ backdrop="static" keyboard={false}>
         <div className="logoutText">Weet je zeker dat je wil uitloggen </div>
         <div className="logOutButtons">
           <button className="Yep"
             variant="primary"
             onClick={() => {
               signOut(auth);
-              localStorage.setItem("auth", "");
+              localStorage.clear();
               navigate("/");
               window.location.reload();
             }}
