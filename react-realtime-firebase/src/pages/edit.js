@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 function Edit() {
   const navigate = useNavigate();
 
-  var uid = localStorage.getItem("auth");
+
+  const uid = localStorage.getItem("auth");
+  const currentUID = localStorage.getItem("currentUID")
   
   const [users, setUsers] = useState([]);
     const [fname, setFname] = useState("");
@@ -40,7 +42,6 @@ function Edit() {
           lname,
           role,
         });
-        localStorage.setItem("currentUserInfo", JSON.stringify(users))
         navigate(`/detail/${uid}`)
       } catch(error) {
         console.log(error.message)
@@ -48,21 +49,29 @@ function Edit() {
       }
     }
 
-    
+    let juisteRole
+    if (currentUID === "owner") {
+      juisteRole =
+      <div>
+        <select name="selectRole" value={role}
+          onChange={e => setRole(e.target.value)}>
+          <option ption value="reader">Reader</option>
+          <option value="writer">Writer</option>
+          <option value="owner">Owner</option>
+        </select>
+      </div>
+    } else{
+      juisteRole =
+      <div>je bent geen owner</div>
+    }
 
   return (
     <div className="edit">
       <h1>Edit</h1>
       <div className="editinvoer">
-        <input required type="text" placeholder={users.fname} onChange={(e) => setFname(e.target.value)}/>
-        <input required type="text" placeholder={users.lname} onChange={(e) => setLname(e.target.value)}/>
-        <div>
-          <select name="selectRole" value={role}
-          onChange={e => setRole(e.target.value)}>
-            <option value="reader">Reader</option>
-            <option value="writer">Writer</option>
-          </select>
-        </div>
+        <input required type="text" defaultValue={users.fname} onChange={(e) => setFname(e.target.value)}/>
+        <input required type="text" defaultValue={users.lname} onChange={(e) => setLname(e.target.value)}/>
+        {juisteRole}
         <button onClick={handleEdit}>Opslaan</button>
       </div>
     </div>

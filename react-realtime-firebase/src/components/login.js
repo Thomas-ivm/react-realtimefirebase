@@ -26,11 +26,12 @@ const Login = () => {
     try {
       // Using Firebase function to sign in with email and password
       await signInWithEmailAndPassword(auth, email, password);
-      const uid = auth?.currentUser?.uid
-      alert('welkom ' + uid)
-      navigate('/insert')
+      const uid = auth?.currentUser?.uid;
+      const CUEmail = auth?.currentUser?.email;
+      alert('welkom ' + CUEmail)
+      navigate('/')
       localStorage.setItem('auth', uid);
-      localStorage.setItem('authEmail', auth?.currentUser?.email);
+      localStorage.setItem('authEmail', CUEmail);
       window.location.reload();
     } catch (err) {
       // Handling errors, if any
@@ -45,11 +46,13 @@ const Login = () => {
     try {
       // Using Firebase function to sign in with Google using a popup
       await signInWithPopup(auth, googleProvider);
-      alert('welkom ' + auth?.currentUser?.email);
-      localStorage.setItem('auth', auth?.currentUser?.uid);
-      localStorage.setItem('authEmail', auth?.currentUser?.email);
+      const uid = auth?.currentUser?.uid;
+      const CUEmail = auth?.currentUser?.email;
+      alert('welkom ' + CUEmail);
+      navigate('/')
+      localStorage.setItem('auth', uid);
+      localStorage.setItem('authEmail', CUEmail);
       window.location.reload();
-      navigate('/insert')
     } catch (err) {
       // Handling errors, if any
       console.error(err.message);

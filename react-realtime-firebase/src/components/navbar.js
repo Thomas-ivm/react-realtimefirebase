@@ -1,5 +1,6 @@
 export default function Navbar() {
     const uid = localStorage.getItem('auth');
+    const role = localStorage.getItem('currentUID')
     var detailUrl = `/detail/${uid}`;
 
     let logbutton
@@ -7,13 +8,15 @@ export default function Navbar() {
     let form
     let formText
     if (uid === null | uid === "" ) {
-        logbutton = '/login';
-         text = "Login"
+          logbutton = '/login';
+          text = "Login"
     }else{
+        if (role === "owner" | role === "writer") {
+          form = '/form'
+          formText = "Add"
+        }
         logbutton = '/logout';
         text = " logout"
-        form = '/form'
-        formText = "Add"
     }
     
     return (

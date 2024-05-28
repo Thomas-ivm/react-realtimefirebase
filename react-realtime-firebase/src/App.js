@@ -22,7 +22,10 @@ function App() {
   }, []);
 
   const uid = localStorage.getItem('auth');
+  const postID = localStorage.getItem('postUID')
+  var editpostUrl = `/editpost/:${postID}`
   var detailUrl = `/detail/:${uid}`;
+  console.log(editpostUrl);
   console.log(detailUrl);
   console.log(uid)
   return (
@@ -38,7 +41,7 @@ function App() {
           <Route path="/detail/:uid" element={<Detail />}/>
           <Route path="/edit/:uid" element={<Edit />}/>
           <Route path="/logout" element={<Logout />}/>
-          <Route path="/editpost" element={<EditPost />}/>
+          <Route path="/editpost/:id" element={<EditPost />}/>
           <Route path="/insert" element={<Insert />}/>
         </Routes>
         <Footer />

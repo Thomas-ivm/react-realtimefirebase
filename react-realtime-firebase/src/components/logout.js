@@ -20,7 +20,9 @@ const Logout = () => {
             variant="primary"
             onClick={() => {
               signOut(auth);
-              localStorage.clear();
+              // localStorage.setItem('auth', '');
+              // localStorage.setItem('authEmail', '');
+              localStorage.clear()
               navigate("/");
               window.location.reload();
             }}

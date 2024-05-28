@@ -447,3 +447,16 @@ footer a:hover {
   min-height: 100vh;
   color: white;
 }
+
+.editPostInput{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.editPost textarea {
+  width: 200px;
+  height: 150px;
+  margin: 5px;
+}
