@@ -12,6 +12,7 @@ import Edit from "./pages/edit";
 import Logout from "./components/logout";
 import EditPost from "./pages/editpost";
 import Insert from "./pages/insert";
+import EditUser from "./pages/edituser";
 
 function App() {
 
@@ -23,9 +24,12 @@ function App() {
 
   const uid = localStorage.getItem('auth');
   const postID = localStorage.getItem('postUID')
+  const userID = localStorage.getItem('userUID')
   var editpostUrl = `/editpost/:${postID}`
+  var edituserUrl = `/edituser/:${userID}`
   var detailUrl = `/detail/:${uid}`;
   console.log(editpostUrl);
+  console.log(edituserUrl)
   console.log(detailUrl);
   console.log(uid)
   return (
@@ -43,6 +47,7 @@ function App() {
           <Route path="/logout" element={<Logout />}/>
           <Route path="/editpost/:id" element={<EditPost />}/>
           <Route path="/insert" element={<Insert />}/>
+          <Route path="/edituser/:id" element={<EditUser/>}/>
         </Routes>
         <Footer />
       </div>

@@ -62,7 +62,7 @@ function Edit() {
       </div>
     } else{
       juisteRole =
-      <div>je bent geen owner</div>
+      null
     }
 
   return (

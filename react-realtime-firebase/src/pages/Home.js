@@ -12,15 +12,16 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
-
+  
   const uid = localStorage.getItem("auth");
   const authEmail = localStorage.getItem("authEmail");
-
+  
   const [isLoading, setIsLoading] = useState(true); // Add isLoading state
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [cUser, setCUser] = useState([]);
-
+  console.log(cUser)
+  
   useEffect(() => {
     const getCurrentUserInfo = async () => {
       if (uid) {
@@ -92,7 +93,7 @@ function Home() {
     text = (
       <div className="homeNotLoggedin">
         "je bent niet ingelogd"
-        <button onClick={navigate("/login")}>Login</button>
+        <button onClick={() => navigate("/login")}>Login</button>
       </div>
     );
   } else {
@@ -111,16 +112,16 @@ function Home() {
             users.map((users) => (
               <div className="info">
                 {/* <p>id: {users.userID}</p> */}
-                <p>
-                  Email: <br /> {users.email}
-                </p>
-                <p>
-                  Naam: {users.fname} {users.lname}
-                </p>
+                <p>Email: <br /> {users.email}</p>
+                <p>Naam: {users.fname} {users.lname}</p>
                 {currentUser === "owner" ? (
                 <div><p>role: {users.role}</p>
                 <p>UID: {users.id}</p></div>
                 ): null}
+                {currentUser === "owner" ? (
+                  <button
+                    onClick={() => { localStorage.setItem("userUID", users.id); navigate(`/edituser/${users.id}`) }}>Edit</button>
+                ) : null}
               </div>
             ))
           )}
