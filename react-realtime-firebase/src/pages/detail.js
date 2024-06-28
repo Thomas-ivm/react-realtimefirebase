@@ -9,6 +9,8 @@ function Detail() {
 
   var uid = localStorage.getItem("auth");
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const docRef = firestoreDoc(db, "users", uid);
@@ -21,9 +23,11 @@ function Detail() {
         const user = doc.data();
         console.log("Document data:", user);
         setUsers(user);
+        setIsLoading(false); // Update de laadstatus
       }
     });
   }, [uid]);
+  
 
   const toEdit = async () => {
     navigate(`/edit/${uid}`);
@@ -32,14 +36,21 @@ function Detail() {
   return (
     <div className="detailPage">
       <h1>Your account</h1>
-      <div className="detailinfo">
-        <div>Email: {users.email}</div>
-        <div>Naam: {users.fname} {users.lname}</div>
-        <div>Role: {users.role}</div>
-      </div>
+      {isLoading ? (
+        <div className="detailinfo">
+          <p>Loading data...</p>
+        </div>
+      ) : (
+        <div className="detailinfo">
+          <div>Email: {users.email}</div>
+          <div>Naam: {users.fname} {users.lname}</div>
+          <div>Role: {users.role}</div>
+        </div>
+      )}
       <button onClick={toEdit}>Edit</button>
     </div>
   );
+  
 }
 
 export default Detail;

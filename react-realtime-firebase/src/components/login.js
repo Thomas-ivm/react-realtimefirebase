@@ -55,7 +55,8 @@ const Login = () => {
       window.location.reload();
     } catch (err) {
       // Handling errors, if any
-      console.error(err.message);
+      console.error(err.code, err.message);
+      alert('iets gaat niet goed')
     }
   };
 

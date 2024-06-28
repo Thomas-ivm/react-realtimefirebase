@@ -12,26 +12,26 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
-  
+
   const uid = localStorage.getItem("auth");
   const authEmail = localStorage.getItem("authEmail");
-  
+
   const [isLoading, setIsLoading] = useState(true); // Add isLoading state
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [cUser, setCUser] = useState([]);
-  console.log(cUser)
-  
+  // console.log(cUser)
+
   useEffect(() => {
     const getCurrentUserInfo = async () => {
       if (uid) {
         const docRef = firestoreDoc(db, "users", uid);
         const docSnap = await getDoc(docRef);
-  
+
         if (docSnap.exists) {
           const cUser = docSnap.data();
           setCUser(cUser);
-          localStorage.setItem("currentUserInfo", JSON.stringify(cUser));
+          window.localStorage.setItem("currentUserInfo", JSON.stringify(cUser));
           console.log(cUser.role);
           localStorage.setItem("currentUID", cUser.role);
         } else {
@@ -39,10 +39,10 @@ function Home() {
         }
       }
     };
-  
+
     getCurrentUserInfo();
   }, [uid]); // Run useEffect only when uid changes
-  
+
 
   // Haal user en post data op uit Firestore
   useEffect(() => {
@@ -82,6 +82,7 @@ function Home() {
 
   // Zoek de role van de huidige gebruiker in de currentUserInfo array
   const currentUser = localStorage.getItem("currentUID");
+  // const currentUserinfo = JSON.parse(window.localStorage.getItem("currentUserinfo"));
   if (currentUser !== null) {
     console.log("er is data");
   } else {
@@ -99,11 +100,11 @@ function Home() {
   } else {
     text = (
       <div className="userPosts">
-          { currentUser === "owner" ? (
-        <p>
+        {currentUser === "owner" ? (
+          <p>
             {authEmail} en {uid}
-        </p>
-          ): null}
+          </p>
+        ) : null}
         <div className="user">
           {isLoading ? (
             <p>Loading users...</p>
@@ -115,9 +116,9 @@ function Home() {
                 <p>Email: <br /> {users.email}</p>
                 <p>Naam: {users.fname} {users.lname}</p>
                 {currentUser === "owner" ? (
-                <div><p>role: {users.role}</p>
-                <p>UID: {users.id}</p></div>
-                ): null}
+                  <div><p>role: {users.role}</p>
+                    <p>UID: {users.id}</p></div>
+                ) : null}
                 {currentUser === "owner" ? (
                   <button
                     onClick={() => { localStorage.setItem("userUID", users.id); navigate(`/edituser/${users.id}`) }}>Edit</button>
@@ -139,8 +140,8 @@ function Home() {
                 <p className="bericht">Bericht: </p>
                 <p>{post.bericht}</p>
                 {currentUser === "owner" ? (
-                <div><p>UID of writer {post.writerUid}</p>
-                <p>ID of post {post.id}</p></div>
+                  <div><p>UID of writer {post.writerUid}</p>
+                    <p>ID of post {post.id}</p></div>
                 ) : null}
                 {currentUser === "writer" && uid === post.writerUid ? (
                   <button
@@ -151,7 +152,7 @@ function Home() {
                   >
                     Edit
                   </button>
-                  ) : currentUser === "owner" ? (
+                ) : currentUser === "owner" ? (
                   <button
                     onClick={() => {
                       localStorage.setItem("postUID", post.id);
@@ -160,7 +161,7 @@ function Home() {
                   >
                     Edit
                   </button>
-                  ) : null}
+                ) : null}
               </div>
             ))
           )}
@@ -184,6 +185,7 @@ function Home() {
         >
           Learn React
         </a>
+        <p>Welkom {cUser.fname}</p>
         <div>{text}</div>
       </header>
     </div>

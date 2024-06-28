@@ -18,6 +18,7 @@ function App() {
 
   const [pathname, setPathname] = useState(null);
 
+  console.log(pathname)
   useEffect(() => {
     setPathname(window.location.pathname);
   }, []);
