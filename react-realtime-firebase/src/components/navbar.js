@@ -27,13 +27,13 @@ export default function Navbar() {
     
     return (
         <nav className="nav">
-            <a href="/" className="link">Home</a>
             <ul>
+            <a href="/" className="link">Home</a>
               <a href="/about" className="link">About</a>            
               <a href={form} className="link">{formText}</a>
               <a href={detailUrl} className="link">{detail}</a>
-            </ul>
             <a href={logbutton} className="link">{text}</a>
+            </ul>
 
         </nav>
     )
