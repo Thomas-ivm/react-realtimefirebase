@@ -15,6 +15,7 @@ function Edit() {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [role, setRole] = useState("");
+    const [bday, setBday] = useState("")
     useEffect(() => {
       const docRef = doc(db, "users", uid);
       const docSnap = getDoc(docRef);
@@ -29,6 +30,7 @@ function Edit() {
           setFname(user.fname);
           setLname(user.lname);
           setRole(user.role);
+          setBday(user.bday)
         }
       });
     }, [uid]);
@@ -41,6 +43,7 @@ function Edit() {
           fname,
           lname,
           role,
+          bday,
         });
         navigate(`/detail/${uid}`)
       } catch(error) {
@@ -71,6 +74,7 @@ function Edit() {
       <div className="editinvoer">
         <input required type="text" defaultValue={users.fname} onChange={(e) => setFname(e.target.value)}/>
         <input required type="text" defaultValue={users.lname} onChange={(e) => setLname(e.target.value)}/>
+        <input required type="date" defaultValue={users.bday} onChange={(e) => setBday(e.target.value)}/>
         {juisteRole}
         <button onClick={handleEdit}>Opslaan</button>
       </div>

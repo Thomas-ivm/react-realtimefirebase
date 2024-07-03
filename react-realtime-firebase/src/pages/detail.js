@@ -27,7 +27,6 @@ function Detail() {
       }
     });
   }, [uid]);
-  
 
   const toEdit = async () => {
     navigate(`/edit/${uid}`);
@@ -45,6 +44,7 @@ function Detail() {
           <div>Email: {users.email}</div>
           <div>Naam: {users.fname} {users.lname}</div>
           <div>Role: {users.role}</div>
+          <div>birthday: {users.bday}</div>
         </div>
       )}
       <button onClick={toEdit}>Edit</button>

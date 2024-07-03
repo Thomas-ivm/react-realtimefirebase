@@ -14,6 +14,7 @@ function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
+    const [bday, setBday] = useState("");
     //signup using email and password
     const signup = async () => {
         if (password === confirmPassword) {
@@ -24,7 +25,8 @@ function SignUp() {
                     fname,
                     lname,
                     email,
-                    role
+                    role,
+                    bday
                 });
                 navigate('/')
 
@@ -51,7 +53,8 @@ function SignUp() {
                 fname,
                 lname,
                 email,
-                role
+                role,
+                bday
             });
             navigate('/')
 
@@ -71,6 +74,8 @@ function SignUp() {
                 <input placeholder="Confirm Password...*" required type="password" onChange={(e) => setConfirmPassword(e.target.value)} />
                 <input placeholder="First name...*" type="text" required onChange={(e) => setFname(e.target.value)} />
                 <input placeholder="Last name...*" type="text" required onChange={(e) => setLname(e.target.value)} />
+                <label>birthday</label>
+                <input type="date" required onChange={(e) => setBday(e.target.value)}/>
             </div>
             <div className="signUpFormButton">
                 <button onClick={signup}> Sign up</button>

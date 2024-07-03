@@ -116,7 +116,9 @@ function Home() {
                 <p>Email: <br /> {users.email}</p>
                 <p>Naam: {users.fname} {users.lname}</p>
                 {currentUser === "owner" ? (
-                  <div><p>role: {users.role}</p>
+                  <div>
+                  <p>birthday: {users.bday}</p>
+                    <p>role: {users.role}</p>
                     <p>UID: {users.id}</p></div>
                 ) : null}
                 {currentUser === "owner" ? (
@@ -137,6 +139,9 @@ function Home() {
                 {/* <p>id: {post.id}</p> */}
                 <p>Title: {post.title}</p>
                 <p>Time: {post.timestamp}</p>
+                {post.UTimestamp ? (
+                  <p>Updated: {post.UTimestamp}</p>
+                ) : null}
                 <p className="bericht">Bericht: </p>
                 <p>{post.bericht}</p>
                 {currentUser === "owner" ? (
